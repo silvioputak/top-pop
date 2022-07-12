@@ -1,4 +1,4 @@
-export const result = [
+export const mapping = [
     {
         "id": 1703487577,
         "title": "As It Was",

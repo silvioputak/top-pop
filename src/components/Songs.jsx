@@ -1,8 +1,9 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
-import { Container,Select,FormControl,MenuItem,Box,CircularProgress,Typography} from '@mui/material';
+import { Container,Select,FormControl,MenuItem,Box,CircularProgress,Typography,Checkbox}
+from '@mui/material';
 import Details from './Details';
-/* import {result} from '../data' */
+import {mapping} from '../data';
 
 
 
@@ -34,7 +35,7 @@ function Songs() {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
+        /* const fetchData = async () => {
             try {
                 const {data} = await axios.get(
                     'https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart'
@@ -45,8 +46,9 @@ function Songs() {
                 console.log(error)
             }
         }
-        fetchData();
+        fetchData(); */
         
+        Sorting(mapping, sorting);
         
     },[])
 
@@ -64,7 +66,17 @@ function Songs() {
     return(
         <Container>
         <Box>
-            <Typography variant='h5'>Izaberi jednu od top 10 pjesama: </Typography>
+            <div style={{display:"flex", justifyContent:"space-between"}}>
+
+                <Typography  variant='h5'>Izaberi jednu od top 10 pjesama: </Typography>
+                <div>
+                    <Typography  variant='h7'>Sorting</Typography>
+                    <Checkbox onClick={() => Sorting(result,sorting)}></Checkbox>
+                    <span>{sorting ? "↑": "↓"}</span>
+                </div>
+               
+            </div>
+            
             <br />
             <Box sx={{minWidth:120}}>
                 <FormControl fullWidth>
