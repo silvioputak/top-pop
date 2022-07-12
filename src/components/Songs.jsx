@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Container,Select,FormControl,MenuItem,Box,CircularProgress,Typography,Checkbox}
 from '@mui/material';
 import Details from './Details';
-import {mapping} from '../data';
+/* import {mapping} from '../data'; */
 
 
 
@@ -35,7 +35,7 @@ function Songs() {
     }
 
     useEffect(() => {
-        /* const fetchData = async () => {
+        const fetchData = async () => {
             try {
                 const {data} = await axios.get(
                     'https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart'
@@ -46,9 +46,9 @@ function Songs() {
                 console.log(error)
             }
         }
-        fetchData(); */
+        fetchData();
         
-        Sorting(mapping, sorting);
+        /* Sorting(mapping, sorting); */
         
     },[])
 
@@ -65,37 +65,33 @@ function Songs() {
    if(song){
     return(
         <Container>
-        <Box>
-            <div style={{display:"flex", justifyContent:"space-between"}}>
-
-                <Typography  variant='h5'>Izaberi jednu od top 10 pjesama: </Typography>
-                <div>
-                    <Typography  variant='h7'>Sorting</Typography>
-                    <Checkbox onClick={() => Sorting(result,sorting)}></Checkbox>
-                    <span>{sorting ? "↑": "↓"}</span>
+            <Box>
+                <div style={{display:"flex", justifyContent:"space-between"}}>
+                    <Typography  variant='h5'>Izaberi jednu od top 10 pjesama: </Typography>
+                    <div>
+                        <Typography  variant='h7'>Sorting</Typography>
+                        <Checkbox onClick={() => Sorting(result,sorting)}></Checkbox>
+                        <span>{sorting ? "↑": "↓"}</span>
+                    </div>
                 </div>
-               
-            </div>
-            
-            <br />
-            <Box sx={{minWidth:120}}>
-                <FormControl fullWidth>
-                <Select
-                    onChange={e => showModal(e.target.value)}
-                    value={song ? song :''}>
-                {
-                    result.map((el) => {
-                        return(
-                        <MenuItem key={el.id} value={el.title}>{el.title}</MenuItem>
-                        )
-                    })
-                }
-                </Select>
-                </FormControl>
+                <br />
+                <Box sx={{minWidth:120}}>
+                    <FormControl fullWidth>
+                        <Select
+                            onChange={e => showModal(e.target.value)}
+                            value={song ? song :''}>
+                        {
+                            result.map((el) => {
+                                return(
+                                <MenuItem key={el.id} value={el.title}>{el.title}</MenuItem>
+                                )
+                            })
+                        }
+                        </Select>
+                    </FormControl>
+                </Box>
             </Box>
-        </Box>
-        <Details show={show} hideModal={hideModal} result={result} song={song}/>
-        
+            <Details show={show} hideModal={hideModal} result={result} song={song}/>
         </Container>
         
     );
