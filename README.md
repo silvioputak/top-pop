@@ -2,7 +2,7 @@
 
  A React application that displays the top 10 popular songs.
 I used the deezer api where I could access the data.
-Feel free to use it ☕
+
  
 
 ## The project was done using following libraries
